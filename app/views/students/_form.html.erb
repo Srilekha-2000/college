@@ -1,0 +1,38 @@
+<%=  form_with model: student do |form|  %>
+
+    
+        
+        
+        
+    <div>
+    <%= form.label  :f_name %>
+    </br>
+    <%= form.text_field :f_name %>
+    
+    </div>
+
+    <div>
+    <%= form.label  :l_name %><br>
+    <%= form.text_field :l_name %>
+    </div>
+
+    <div>
+    <%= form.label  :email %></br>
+    <%= form.text_field :email %>
+    </div>
+
+    <div>
+    <%= form.label  :phone_no %></br>
+    <%= form.text_field :phone_no %>
+    </div>
+
+    <div>
+    <%= form.label  :bio %></br>
+    <%= form.text_field :bio %>
+    </div>
+
+    <div>
+    <%= form.submit %></br>
+    </div>
+    
+    <%  end  %>

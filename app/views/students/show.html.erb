@@ -1,0 +1,63 @@
+<p><%= notice %></p>
+<h1>Student Details</h1>
+<p><strong>F_Name: </strong><%= @student.try(:f_name) %></p>
+<p><strong>L_Name: </strong><%= @student.try(:l_name) %></p>
+<p><strong> Email: </strong><%= @student.try(:email) %></p>
+<p><strong> Phone_no: </strong><%= @student.try(:phone_no) %></p>
+<p><strong> Bio: </strong><%= @student.try(:bio) %></p>
+
+<h1><%= @student.try(:commenter) %></h1>
+
+<p><%= @student.try(:body) %></p>
+
+<ul>
+  <li><%= link_to "Edit", edit_student_path(@student) %></li>
+  <li><%= link_to "Destroy", student_path(@student), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+</ul>
+
+
+
+<h2>Comments</h2>
+<% @student.comments.each do |comment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+
+  <p>
+    <%= link_to "Edit", edit_student_comment_path(comment.id) %>
+  </p>
+
+  <p>
+    <%= link_to "Destroy Comment", [comment.student, comment], data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %>
+  </p>
+<% end %>
+
+<h2>Add a comment:</h2>
+<%= form_with model: [ @student, @student.comments.build ] do |form| %>
+  <p>
+    <%= form.label :commenter %><br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+
+
